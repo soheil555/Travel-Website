@@ -60,4 +60,50 @@ function animateSlides(){
 
 }
 
+
+const cursor = document.querySelector(".cursor-div");
+const cursorText = cursor.querySelector("span");
+
+function mouse(e){
+
+
+     cursor.style.top = e.pageY + "px";
+     cursor.style.left = e.pageX + "px";
+
+}
+
+function activeMouse(e){
+     if(e.target.id == "logo" || e.target.classList.contains("burger")){
+          cursor.classList.add("active");
+     }
+     else{
+          cursor.classList.remove("active");
+     }
+
+     if(e.target.classList.contains("explore")){
+
+          
+          cursor.classList.add("active-explore");
+          cursorText.innerText = "Tap";
+
+          gsap.to(".title-swipe",1,{y:"0%"});
+          
+
+     }
+     else{
+
+          cursor.classList.remove("active-explore");
+          cursorText.innerText = "";
+          gsap.to(".title-swipe",1,{y:"100%"});
+          
+     }
+
+}
+
+
+window.addEventListener("mousemove",mouse);
+window.addEventListener("mouseover",activeMouse);
+
+
+
 animateSlides();
