@@ -12,10 +12,6 @@ body {
   position: relative;
 }
 
-main {
-  position: absolute;
-}
-
 .nav-header {
   min-height: 10vh;
   width: 80%;
@@ -25,7 +21,6 @@ main {
   margin: auto;
   padding: 2rem 0;
   font-size: 1rem;
-  position: relative;
 }
 
 #logo {

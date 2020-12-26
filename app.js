@@ -86,16 +86,15 @@ function activeMouse(e){
           cursor.classList.add("active-explore");
           cursorText.innerText = "Tap";
 
-          gsap.to(".title-swipe",1,{y:"0%"});
+          gsap.to(".title-swipe",1,{y:"0%"})
           
 
      }
      else{
-
           cursor.classList.remove("active-explore");
           cursorText.innerText = "";
-          gsap.to(".title-swipe",1,{y:"100%"});
-          
+          gsap.to(".title-swipe",1,{y:"100%"})
+
      }
 
 }
