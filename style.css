@@ -21,6 +21,8 @@ body {
   margin: auto;
   padding: 2rem 0;
   font-size: 1rem;
+  z-index: 2;
+  position: relative;
 }
 
 #logo {
@@ -174,7 +176,7 @@ body {
 
 .cursor-div.active {
   transform: scale(3);
-  background: lightblue;
+  background: rgb(86, 124, 228);
 }
 
 .cursor-div.active-explore {
@@ -217,4 +219,8 @@ body {
 }
 .t-swipe3 {
   background: rgb(255, 139, 93);
+}
+
+body.hide {
+  overflow: hidden;
 }

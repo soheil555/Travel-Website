@@ -28,11 +28,11 @@ function animateSlides(){
                reverse:false
           })
           .setTween(slideTl)
-          .addIndicators({
-               colorStart:'white',
-               colorTrigger:'white',
-               name:'slide'
-          })
+          // .addIndicators({
+          //      colorStart:'white',
+          //      colorTrigger:'white',
+          //      name:'slide'
+          // })
           .addTo(controller);
 
           const pageTl = gsap.timeline();
@@ -47,12 +47,12 @@ function animateSlides(){
           })
           .setPin(slide,{pushFollowers:false})
           .setTween(pageTl)
-          .addIndicators({
-               colorStart:'white',
-               colorTrigger:'white',
-               name:'page',
-               indent:200
-          })
+          // .addIndicators({
+          //      colorStart:'white',
+          //      colorTrigger:'white',
+          //      name:'page',
+          //      indent:200
+          // })
           .addTo(controller)
 
 
@@ -63,6 +63,8 @@ function animateSlides(){
 
 const cursor = document.querySelector(".cursor-div");
 const cursorText = cursor.querySelector("span");
+const burger = document.querySelector(".burger");
+
 
 function mouse(e){
 
@@ -99,7 +101,30 @@ function activeMouse(e){
 
 }
 
+function openNav(){
+     burger.classList.toggle("active");
+     if(burger.classList.contains("active")){
 
+          gsap.to(".line1",0.5,{rotate:"45",y:5,background:"black"});
+          gsap.to(".line2",0.5,{rotate:"-45",y:-5,background:"black"});
+          gsap.to(".nav-bar",1,{clipPath:"circle(2500px at 100% -10%)"});
+          gsap.to("#logo",1,{color:"black"});
+          document.body.classList.add("hide");
+
+     }
+     else{
+
+          gsap.to(".line1",0.5,{rotate:"0",y:0,background:"white"});
+          gsap.to(".line2",0.5,{rotate:"0",y:0,background:"white"});
+          gsap.to(".nav-bar",1,{clipPath:"circle(50px at 100% -100%)"});
+          gsap.to("#logo",1,{color:"white"});
+          document.body.classList.remove("hide");
+
+     }
+}
+
+
+burger.addEventListener("click",openNav);
 window.addEventListener("mousemove",mouse);
 window.addEventListener("mouseover",activeMouse);
 
