@@ -12,6 +12,10 @@ body {
   position: relative;
 }
 
+a {
+  color: white;
+}
+
 .nav-header {
   min-height: 10vh;
   width: 80%;
@@ -223,4 +227,64 @@ body {
 
 body.hide {
   overflow: hidden;
+}
+
+/* fashion page */
+
+.fashion-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+  margin-top: 2rem;
+  min-height: 90vh;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.fashion-desc {
+  flex: 1;
+  flex-basis: 25rem;
+}
+
+.fashion-desc h1 {
+  font-size: 7rem;
+  margin-bottom: 10rem;
+}
+
+.fashion-desc p {
+  font-size: 1.5rem;
+  padding-right: 5rem;
+}
+
+.fashion-img {
+  flex: 1;
+  flex-basis: 15rem;
+}
+
+.fashion-img img {
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+}
+
+.fashion-number {
+  position: absolute;
+  font-size: 8rem;
+  top: 80%;
+  left: 45%;
+  opacity: 0.2;
+}
+
+.fashion1 h1 {
+  color: rgb(255, 139, 93);
+}
+
+.fashion2 h1 {
+  color: #b8de6f;
+}
+
+.fashion3 h1 {
+  color: #af2d2d;
 }
