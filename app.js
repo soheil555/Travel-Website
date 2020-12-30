@@ -28,11 +28,11 @@ function animateSlides(){
                reverse:false
           })
           .setTween(slideTl)
-          // .addIndicators({
-          //      colorStart:'white',
-          //      colorTrigger:'white',
-          //      name:'slide'
-          // })
+          .addIndicators({
+               colorStart:'white',
+               colorTrigger:'white',
+               name:'slide'
+          })
           .addTo(controller);
 
           const pageTl = gsap.timeline();
@@ -47,12 +47,12 @@ function animateSlides(){
           })
           .setPin(slide,{pushFollowers:false})
           .setTween(pageTl)
-          // .addIndicators({
-          //      colorStart:'white',
-          //      colorTrigger:'white',
-          //      name:'page',
-          //      indent:200
-          // })
+          .addIndicators({
+               colorStart:'white',
+               colorTrigger:'white',
+               name:'page',
+               indent:200
+          })
           .addTo(controller)
 
 
@@ -124,10 +124,60 @@ function openNav(){
 }
 
 
+const logo = document.querySelector("#logo");
+
+barba.init({
+
+     views:[{
+
+          namespace:"home",
+          beforeEnter(){
+               logo.href = "./index.html";
+               animateSlides();
+          },
+          beforeLeave(){
+               slideScene.destroy();
+               pageScene.destroy();
+               controller.destroy();
+          }
+          
+     },{
+          namespace:"fashion",
+          beforeEnter(){
+               
+               logo.href = "../index.html";
+               gsap.fromTo('.nav-header',2,{y:'-100%'},{y:'0%',ease:'power2.inOut'});
+               
+          }
+     }],
+
+     transitions:[{
+          name: "default",
+          leave({current,next}){
+              let done = this.async();
+
+               const tl = gsap.timeline({defaults:{ease:"power2.inOut"}});
+               tl.fromTo(current.container,1,{opacity:1},{opacity:0});
+               tl.fromTo(".swipe",0.75,{x:'-100%'},{x:'0%',onComplete:done},'-=0.5');
+
+               
+          },
+          enter({current,next}){
+
+               window.scrollTo(0,0);
+
+              let done = this.async();
+
+               const tl = gsap.timeline({defaults:{ease:"power2.inOut"}});
+               tl.fromTo(".swipe",0.75,{x:'0%'},{x:'100%',onComplete:done,stagger:0.25});
+               tl.fromTo(next.container,1,{opacity:0},{opacity:1});
+          }
+     }]
+
+});
+
+
+
 burger.addEventListener("click",openNav);
 window.addEventListener("mousemove",mouse);
 window.addEventListener("mouseover",activeMouse);
-
-
-
-animateSlides();
