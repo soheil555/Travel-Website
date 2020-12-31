@@ -2,6 +2,9 @@ let controller;
 let slideScene;
 let pageScene;
 
+let controller2;
+let fashionScene;
+
 function animateSlides(){
 
      controller = new ScrollMagic.Controller();
@@ -124,6 +127,59 @@ function openNav(){
 }
 
 
+
+
+function fashionAnimation(){
+
+     controller2 = new ScrollMagic.Controller();
+
+     details = document.querySelectorAll(".fashion-detail");
+
+     gsap.fromTo('.nav-header',1,{y:'-100%'},{y:'0%',ease:'power2.inOut'});
+
+     details.forEach((detail,index,details) => {
+
+
+
+          const detailTl = gsap.timeline({defaults:{duration:1,ease:"power.inOut"}});
+          detailTl.fromTo(detail,{opacity:1},{opacity:0});
+
+          const nextDetail = index === details.length-1 ? "none" : details[index+1];
+
+          const detailImg = detail.querySelector("img");
+
+          detailTl.fromTo(nextDetail,{opacity:0},{opacity:1},'-=1');
+
+          detailTl.fromTo(detailImg,{x:"0%"},{x:"50%"},'-=1');
+
+
+          fashionScene = new ScrollMagic.Scene({
+               triggerElement:detail,
+               triggerHook:0,
+               duration:'100%'
+     
+          }).setTween(detailTl)
+          .setPin(detail,{pushFollowers:false})
+          .addIndicators({
+                    colorStart:'white',
+                    colorTrigger:'white',
+                    name:'fashion',
+                    indent:200
+               })
+               .addTo(controller2)
+
+
+
+     });
+
+
+}
+
+
+
+
+
+
 const logo = document.querySelector("#logo");
 
 barba.init({
@@ -145,8 +201,8 @@ barba.init({
           namespace:"fashion",
           beforeEnter(){
                
+               fashionAnimation();
                logo.href = "../index.html";
-               gsap.fromTo('.nav-header',2,{y:'-100%'},{y:'0%',ease:'power2.inOut'});
                
           }
      }],
@@ -175,7 +231,6 @@ barba.init({
      }]
 
 });
-
 
 
 burger.addEventListener("click",openNav);
